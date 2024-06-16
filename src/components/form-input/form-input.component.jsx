@@ -9,6 +9,7 @@ function FormInput({ label, ...otherProps }) {
         className="form-input"
         onChange={(e) => setInput(e.target.value)}
         {...otherProps}
+        required
       />
       {label && (
         <label className={`${input.length ? "shrink" : ""} form-input-label`}>
