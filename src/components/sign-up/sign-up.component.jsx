@@ -1,12 +1,39 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import {
+  createUserDocumentFromAuth,
+  createAuthUserWithEmailAndPassword,
+} from "../../utils/firebase/firebase.utils";
+import FormInput from "../../components/form-input/form-input.component";
+import "./sign-up.styles.scss";
+import Button from "../button/button.component";
 
 function SignUpForm() {
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({});
 
   const displayNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+
+  const signUpUser = async (formData) => {
+    const { email, password, displayName } = formData;
+    try {
+      const user = await createAuthUserWithEmailAndPassword(email, password);
+
+      const userDocRef = await createUserDocumentFromAuth(user, {
+        displayName: displayName,
+      });
+    } catch (error) {
+      console.error("User creation encountered an error", error);
+    }
+  };
+
+  useEffect(() => {
+    // Ensure formData is not empty or in its initial state if needed
+    if (Object.keys(formData).length > 0) {
+      signUpUser(formData);
+    }
+  }, [formData]); // Dependency array, useEffect runs when formData changes
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,27 +49,29 @@ function SignUpForm() {
     }
 
     setFormData({ displayName, email, password });
+    // Clear the form fields
+    displayNameRef.current.value = "";
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
+    confirmPasswordRef.current.value = "";
   };
 
   return (
-    <>
-      <h1>Sign up with your email and password</h1>
-      <form onSubmit={() => {}}>
-        <label>Display Name</label>
-        <input type="text" ref={displayNameRef} required />
-
-        <label>Email</label>
-        <input type="email" ref={emailRef} required />
-
-        <label>Password</label>
-        <input type="password" ref={passwordRef} required />
-
-        <label>Confirm Password</label>
-        <input type="password" ref={confirmPasswordRef} required />
-
-        <button type="submit">Submit</button>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password</span>
+      <form onSubmit={handleSubmit}>
+        <FormInput label="Display Name" ref={displayNameRef} type="text" />
+        <FormInput label="Email" ref={emailRef} type="email" />
+        <FormInput label="Password" ref={passwordRef} type="password" />
+        <FormInput
+          label="Confirm Password"
+          ref={confirmPasswordRef}
+          type="password"
+        />
+        <Button type="submit">Sign Up</Button>
       </form>
-    </>
+    </div>
   );
 }
 

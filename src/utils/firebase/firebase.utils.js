@@ -1,12 +1,19 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-
+const firebaseConfig = {
+    apiKey: "AIzaSyAsbk2pfqZ0SddKiXdYi6sTH8NC0f2L7bQ",
+    authDomain: "crown-clothing-b53ff.firebaseapp.com",
+    projectId: "crown-clothing-b53ff",
+    storageBucket: "crown-clothing-b53ff.appspot.com",
+    messagingSenderId: "1049656970004",
+    appId: "1:1049656970004:web:4e2ab4f7a85646706f5001"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -43,4 +50,22 @@ export const createUserDocumentFromAuth = async (userAuth, additionalData) => {
 
     return userDocRef;
 
+}
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) {
+        console.log("Email and password are required");
+        return;
+    }
+
+    try {
+        const { user } = await createUserWithEmailAndPassword(auth, email, password);
+
+        return user;
+    } catch (error) {
+        if (error.code == "auth/email-already-in-use") {
+            alert("Cannot create user, email already in use!");
+        }
+        console.log("Error creating user", error.message);
+    }
 }
