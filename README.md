@@ -1,8 +1,35 @@
-# React + Vite
+# Crown Clothing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React project for an online clothing store called Crown Clothing.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `npm install` to install the dependencies.
+
+## Usage
+
+1. Run `npm start` to start the development server.
+2. Open your browser and navigate to `http://localhost:3000` to view the application.
+
+## Features
+
+- Browse and search for clothing items.
+- Add items to the shopping cart.
+- Proceed to checkout and make a purchase.
+
+## Technologies Used
+
+- React
+- Redux
+- Firebase
+- CSS
+
+## Contributing
+
+Contributions are welcome! Please follow the guidelines in [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
