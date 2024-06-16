@@ -1,0 +1,12 @@
+.authentication-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 768px) {
+  .authentication-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
