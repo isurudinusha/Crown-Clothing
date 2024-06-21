@@ -1,6 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect,
+    createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    onAuthStateChanged
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -117,4 +121,8 @@ export const signOutUser = async () => {
     } catch (error) {
         console.log("Error signing out user", error.message);
     }
+}
+
+export const onAuthStateChangedListener = (callback) => {
+    return onAuthStateChanged(auth, callback);
 }

@@ -10,6 +10,7 @@ import {
 
 import "./sign-up.styles.scss";
 import { UserContext } from "../../context/user.context";
+import { ProductsContext } from "../../context/product.context";
 
 const defaultFormFields = {
   displayName: "",
@@ -41,7 +42,7 @@ const SignUpForm = () => {
 
       await createUserDocumentFromAuth(user, { displayName });
 
-      setCurrentUser(user);
+      // setCurrentUser(user);
 
       resetFormFields();
     } catch (error) {

@@ -40,7 +40,7 @@ const SignIn = () => {
       const user = await signInAuthWithEmailAndPassword(email, password);
       const userData = await getUserDocumentFromAuth(user.uid);
       // console.log(userData);
-      setCurrentUser(user);
+      // setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       console.log(error);
