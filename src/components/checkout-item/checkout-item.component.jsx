@@ -23,15 +23,18 @@ function CheckoutItem({ cartItem }) {
       <div className="image-container">
         <img src={cartItem.imageUrl} alt={cartItem.name} />
       </div>
-
-      <span type="button" onClick={decreaseQuantity}>
-        {"<"}
-      </span>
-      <span className="quantity">{cartItem.quantity}</span>
-      <span type="button" onClick={increaseQuantity}>
-        {">"}
-      </span>
       <span className="name">{cartItem.name}</span>
+      <div className="quantity">
+        <div className="arrow" onClick={decreaseQuantity}>
+          &#10094;
+        </div>
+        <div className="value"> {cartItem.quantity}</div>
+
+        <div className="arrow" onClick={increaseQuantity}>
+          &#10095;
+        </div>
+      </div>
+
       <span className="price">{cartItem.price}</span>
       <span type="button" className="remove-button" onClick={removeItem}>
         &#10005;
