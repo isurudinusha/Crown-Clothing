@@ -7,17 +7,25 @@ import "./cart-dropdown.styles.scss";
 
 function CartDropdown() {
   const navigate = useNavigate();
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, cartToggle, setCartToggle } = useContext(CartContext);
+
+  const handleClickGoToCheckout = () => {
+    navigate("/checkout");
+    setCartToggle(false);
+  };
 
   return (
-    <div className="cart-dropdown-container">
+    <div
+      className="cart-dropdown-container"
+      onMouseLeave={() => setCartToggle(false)}
+    >
       <div className="cart-items">
         {cartItems.map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />
         ))}
       </div>
 
-      <Button onClick={() => navigate("/checkout")}>GO TO CHECKOUT</Button>
+      <Button onClick={handleClickGoToCheckout}>GO TO CHECKOUT</Button>
     </div>
   );
 }

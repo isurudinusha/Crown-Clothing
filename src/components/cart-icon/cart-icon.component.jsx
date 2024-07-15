@@ -8,7 +8,7 @@ function CartIcon() {
   return (
     <div
       className="cart-icon-container"
-      onClick={() => setCartToggle(!cartToggle)}
+      onMouseEnter={() => setCartToggle(true)}
     >
       <ShoppingBag className="shopping-icon" />
       <span className="item-count">
