@@ -14,15 +14,20 @@ function Category() {
       if (categoriesMap[key].title.toLowerCase() === category)
         setProducts(categoriesMap[key].items);
     });
+    window.scrollTo(0, 0);
   }, [category, categoriesMap]);
+
   return (
     <>
       {products.length > 0 ? (
-        <div className="products-container">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        <>
+          <h2 style={{ textAlign: "center" }}>{category.toUpperCase()}</h2>
+          <div className="products-container">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </>
       ) : (
         <div className="loading-container">
           <div className="preloader">
