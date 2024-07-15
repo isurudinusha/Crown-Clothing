@@ -35,7 +35,7 @@ function Checkout() {
           <span>Remove</span>
         </div>
       </div>
-      {cartItems.map((cartItem) => {
+      {[...cartItems].reverse().map((cartItem) => {
         return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
       <span className="total">Total: ${total}</span>

@@ -20,7 +20,7 @@ function CartDropdown() {
       onMouseLeave={() => setCartToggle(false)}
     >
       <div className="cart-items">
-        {cartItems.map((cartItem) => (
+        {[...cartItems].reverse().map((cartItem) => (
           <CartItem key={cartItem.id} cartItem={cartItem} />
         ))}
       </div>

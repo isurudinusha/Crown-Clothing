@@ -2,12 +2,14 @@ import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { CategoriesContext } from "../../context/categories.context";
 import ProductCard from "../../components/product-card/product-card.component";
+import { useNavigate } from "react-router-dom";
 import "./category.styles.scss";
 
 function Category() {
   const { categoriesMap } = useContext(CategoriesContext);
   const { category } = useParams();
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     Object.keys(categoriesMap).map((key) => {
@@ -21,7 +23,22 @@ function Category() {
     <>
       {products.length > 0 ? (
         <>
-          <h2 style={{ textAlign: "center" }}>{category.toUpperCase()}</h2>
+          <div
+            className="category-header"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <h2 onClick={() => navigate(-1)} style={{ cursor: "pointer" }}>
+              {" "}
+              &#11164;
+            </h2>
+            <h2 style={{ textAlign: "center", flexGrow: 1 }}>
+              {category.toUpperCase()}
+            </h2>
+          </div>
           <div className="products-container">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
