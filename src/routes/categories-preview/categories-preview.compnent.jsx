@@ -18,7 +18,7 @@ function CategoriesPreview() {
               }
               style={{ cursor: "pointer" }}
             >
-              {categoriesMap[key].title.toUpperCase()}
+              {categoriesMap[key].title.toUpperCase()} &#10148;
             </h2>
             <div className="products-container">
               {categoriesMap[key].items.slice(0, 4).map((item) => (
