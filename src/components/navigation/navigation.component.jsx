@@ -10,7 +10,7 @@ import "./navigation.styles.scss";
 
 function Navigation() {
   const { currentUser } = useContext(UserContext);
-  const { cartToggle } = useContext(CartContext);
+  const { cartToggle, setCartToggle } = useContext(CartContext);
 
   // const signOutHandler = async () => {
   //   await signOutUser();

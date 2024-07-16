@@ -20,9 +20,15 @@ function CartDropdown() {
       onMouseLeave={() => setCartToggle(false)}
     >
       <div className="cart-items">
-        {[...cartItems].reverse().map((cartItem) => (
-          <CartItem key={cartItem.id} cartItem={cartItem} />
-        ))}
+        {cartItems.length > 0 ? (
+          [...cartItems]
+            .reverse()
+            .map((cartItem) => (
+              <CartItem key={cartItem.id} cartItem={cartItem} />
+            ))
+        ) : (
+          <span style={{ textAlign: "center" }}>Your cart is empty!</span>
+        )}
       </div>
 
       <Button onClick={handleClickGoToCheckout}>GO TO CHECKOUT</Button>

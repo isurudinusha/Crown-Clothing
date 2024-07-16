@@ -1,24 +1,21 @@
 import { useContext } from "react";
 import { CategoriesContext } from "../../context/categories.context";
 import ProductCard from "../../components/product-card/product-card.component";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function CategoriesPreview() {
   const { categoriesMap } = useContext(CategoriesContext);
-  const navigate = useNavigate();
 
   return (
     <>
       {categoriesMap.length > 0 ? (
         Object.keys(categoriesMap).map((key) => (
           <>
-            <h2
-              onClick={() =>
-                navigate(`${categoriesMap[key].title.toLowerCase()}`)
-              }
-              style={{ cursor: "pointer" }}
-            >
-              {categoriesMap[key].title.toUpperCase()} &#10148;
+            <h2 style={{ cursor: "pointer" }}>
+              <Link to={categoriesMap[key].title.toLowerCase()}>
+                {" "}
+                {categoriesMap[key].title.toUpperCase()} &#10148;
+              </Link>
             </h2>
             <div className="products-container">
               {categoriesMap[key].items.slice(0, 4).map((item) => (
