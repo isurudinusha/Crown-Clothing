@@ -13,7 +13,6 @@ function CategoriesPreview() {
           <>
             <h2 style={{ cursor: "pointer" }}>
               <Link to={categoriesMap[key].title.toLowerCase()}>
-                {" "}
                 {categoriesMap[key].title.toUpperCase()} &#10148;
               </Link>
             </h2>
