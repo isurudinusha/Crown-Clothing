@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { CategoriesContext } from "../../context/categories.context";
+import { useSelector } from "react-redux";
 import ProductCard from "../../components/product-card/product-card.component";
 import { Link } from "react-router-dom";
+import { selectCategories } from "../../store/categories/categories.selector";
 
 function CategoriesPreview() {
-  const { categoriesMap } = useContext(CategoriesContext);
+  // const { categoriesMap } = useContext(CategoriesContext);
+  const categoriesMap = useSelector(selectCategories);
 
   return (
     <>
